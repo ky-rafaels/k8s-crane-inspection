@@ -117,9 +117,6 @@ COPY --from=builder /app/os_detector.py /app/os_detector.py
 # Set Python path
 # ENV PYTHONPATH=/app/deps
 
-# Ensure Crane is executable
-USER root
-RUN chmod +x /usr/bin/crane
 USER nonroot
 
 ENTRYPOINT ["python"]

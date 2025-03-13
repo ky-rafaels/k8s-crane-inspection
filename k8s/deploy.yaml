@@ -33,5 +33,5 @@ spec:
   serviceAccountName: image-os-detector
   containers:
   - name: os-detector
-    image: my-python-app:latest  # Replace with your built image
+    image: localhost:5000/os-detector:v2  # Replace with your built image
   restartPolicy: Never

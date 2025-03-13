@@ -8,7 +8,7 @@ import os
 def get_pod_images():
     """Discover all pods in the cluster and return a list of their container images."""
     # Load in-cluster config
-    config.load_in_cluster_config()
+    config.load_incluster_config()
     v1 = client.CoreV1Api()
     
     # Get all pods across all namespaces
