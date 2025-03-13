@@ -95,7 +95,7 @@ FROM cgr.dev/ky-rafaels.example.com/python:3.11-dev AS builder
 WORKDIR /app
 
 # Install Crane
-RUN curl -L "https://github.com/google/go-containerregistry/releases/latest/download/go-containerregistry_Linux_x86_64.tar.gz" | tar -xz -C /usr/local/bin crane
+RUN apk add --no-cache crane
 
 # Copy application code
 COPY os_detector.py .
@@ -109,7 +109,7 @@ WORKDIR /app
 # COPY --from=builder /app/deps /app/deps
 
 # Copy Crane binary
-COPY --from=builder /usr/local/bin/crane /usr/local/bin/crane
+COPY --from=builder /usr/bin/crane /usr/bin/crane
 
 # Copy application code
 COPY --from=builder /app/os_detector.py /app/os_detector.py
@@ -119,7 +119,7 @@ COPY --from=builder /app/os_detector.py /app/os_detector.py
 
 # Ensure Crane is executable
 USER root
-RUN chmod +x /usr/local/bin/crane
+RUN chmod +x /usr/bin/crane
 USER nonroot
 
 ENTRYPOINT ["python"]
